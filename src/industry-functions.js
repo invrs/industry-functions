@@ -1,16 +1,12 @@
-import { protoToFunctions } from "./proto"
+import { protoToMap } from "./proto"
 
 export let functions = Class =>
   class extends Class {
     functions() {
-      let proto = this.constructor.prototype
-      let names = protoToFunctions(proto)
-      let fns = new Map()
+      return protoToMap.bind(this)(this)
+    }
 
-      names.forEach(name => {
-        fns.set(name, this[name])
-      })
-
-      return fns
+    static functions() {
+      return protoToMap.bind(this)(this)
     }
   }
