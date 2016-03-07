@@ -1,5 +1,5 @@
 import { factory } from "industry"
-import { factory_instance } from "industry-factory-instance"
+import { instance } from "industry-instance"
 import { functions } from "../../"
 
 describe("functions", () => {
@@ -7,7 +7,7 @@ describe("functions", () => {
 
   function makeTest() {
     return factory()
-      .set("factory_instance", factory_instance)
+      .set("instance", instance)
       .set("functions", functions)
       .base(class {
         hello() {}
