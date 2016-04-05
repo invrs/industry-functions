@@ -1,12 +1,12 @@
-import { protoToMap } from "./proto"
+import { protoToObject } from "./proto"
 
 export let functions = Class =>
   class extends Class {
     functions() {
-      return protoToMap.bind(this)(this)
+      return protoToObject.bind(this)(this)
     }
 
     static functions() {
-      return protoToMap.bind(this)(this)
+      return protoToObject.bind(this)(this)
     }
   }

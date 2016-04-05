@@ -7,12 +7,12 @@ export let ignore = [
   "toString"
 ]
 
-export function protoToMap(proto) {
-  let fns = new Map()
+export function protoToObject(proto) {
+  let fns = {}
   let names = protoToNames(proto)
 
   names.forEach(name => {
-    fns.set(name, this[name])
+    fns[name] = this[name]
   })
 
   return fns

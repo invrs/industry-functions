@@ -21,27 +21,27 @@ describe("functions", () => {
 
   describe("instance methods", () => {
     it("returns the proper keys", () => {
-      expect([...test().functions().keys()]).toEqual(
+      expect(Object.keys(test().functions())).toEqual(
         [ "constructor", "functions", "hello" ]
       )
     })
 
     it("returns the proper values", () => {
       let fns = test().functions()
-      expect(fns.get("hello")).toEqual(jasmine.any(Function))
+      expect(fns.hello).toEqual(jasmine.any(Function))
     })
   })
 
   describe("class methods", () => {
     it("returns the proper keys", () => {
-      expect([...test().constructor.functions().keys()]).toEqual(
+      expect(Object.keys(test().constructor.functions())).toEqual(
         [ "functions", "factory", "world", "constructor" ]
       )
     })
 
     it("returns the proper values", () => {
       let fns = test().constructor.functions()
-      expect(fns.get("world")).toEqual(jasmine.any(Function))
+      expect(fns.world).toEqual(jasmine.any(Function))
     })
   })
 })
