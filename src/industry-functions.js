@@ -9,6 +9,7 @@ export let functions = Class =>
           instance: [ "functions" ]
         }
       })
+      super.beforeFactoryOnce()
     }
 
     functions() {
