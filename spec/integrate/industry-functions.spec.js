@@ -21,9 +21,7 @@ describe("functions", () => {
 
   describe("instance methods", () => {
     it("returns the proper keys", () => {
-      expect(Object.keys(test().functions())).toEqual(
-        [ "constructor", "functions", "hello" ]
-      )
+      expect(Object.keys(test().functions())).toEqual([ "hello" ])
     })
 
     it("returns the proper values", () => {
@@ -34,9 +32,7 @@ describe("functions", () => {
 
   describe("class methods", () => {
     it("returns the proper keys", () => {
-      expect(Object.keys(test().constructor.functions())).toEqual(
-        [ "functions", "factory", "world", "constructor" ]
-      )
+      expect(Object.keys(test().constructor.functions())).toEqual([ "world" ])
     })
 
     it("returns the proper values", () => {

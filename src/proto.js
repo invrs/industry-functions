@@ -1,4 +1,4 @@
-export let ignore = [
+export let ignore_props = [
   "apply",
   "arguments",
   "bind",
@@ -7,9 +7,9 @@ export let ignore = [
   "toString"
 ]
 
-export function protoToObject(proto) {
+export function protoToObject(proto, ignore) {
   let fns = {}
-  let names = protoToNames(proto)
+  let names = protoToNames(proto, ignore.concat(ignore_props))
 
   names.forEach(name => {
     fns[name] = this[name]
@@ -18,7 +18,7 @@ export function protoToObject(proto) {
   return fns
 }
 
-export function protoToNames(proto) {
+export function protoToNames(proto, ignore) {
   if (proto && proto.__proto__) {
     return Object
       .getOwnPropertyNames(proto)
@@ -27,7 +27,7 @@ export function protoToNames(proto) {
           return (typeof proto[name] == "function")
         }
       })
-      .concat(protoToNames(proto.__proto__))
+      .concat(protoToNames(proto.__proto__, ignore))
   } else {
     return []
   }
