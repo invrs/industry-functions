@@ -13,7 +13,7 @@ export let functions = Class =>
     }
 
     functions() {
-      return protoToObject.bind(this)(this, this.industry().ignore.instance)
+      return protoToObject.bind(this)(this, this.Class.industry().ignore.instance)
     }
 
     static functions() {
