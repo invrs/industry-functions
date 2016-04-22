@@ -1,6 +1,6 @@
 # IndustryFunctions [![Build Status](https://travis-ci.org/invrs/industry-functions.svg?branch=master)](https://travis-ci.org/invrs/industry-functions)
 
-Adds a `functions` method to [Industry](https://github.com/invrs/industry) factory instances that returns all instance and class functions.
+Retrieve factory instance and class methods.
 
 ## Usage
 
@@ -17,6 +17,6 @@ let test factory()
     static world() {}
   })
 
-test().functions()             // Map { 'hello' => [Function: hello] }
-test().constructor.functions() // Map { 'world' => [Function: world] }
+test().functions()             // { 'hello' => [Function: hello] }
+test().constructor.functions() // { 'world' => [Function: world] }
 ```
