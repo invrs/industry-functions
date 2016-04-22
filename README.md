@@ -9,14 +9,14 @@ import { factory } from "industry"
 import { instance } from "industry-instance"
 import { functions } from "industry-functions"
 
-let test = factory()
-  .set("instance", instance)
-  .set("functions", functions)
-
-test = test(class {
+class Test {
   hello() {}
   static world() {}
-})
+}
+
+let test = factory(Test)
+  .set("instance", instance)
+  .set("functions", functions)
 
 test().functions()             // { 'hello' => [Function: hello] }
 test().constructor.functions() // { 'world' => [Function: world] }
