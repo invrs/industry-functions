@@ -8,10 +8,8 @@ let cache = {
 function cacheFunctions({ id, ignore, type }) {
   let c = cache[type]
   if (c[id]) {
-    console.log("cache hit", id)
     return c[id]
   } else {
-    console.log("cache miss", id)
     c[id] = protoToObject.bind(this)(this, ignore[type])
     return c[id]
   }
