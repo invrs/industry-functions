@@ -1,5 +1,21 @@
 import { protoToObject } from "./proto"
 
+let cache = {
+  Class: {},
+  instance: {}
+}
+
+function cacheFunctions({ ignore, type }) {
+  let c = cache[type]
+  if (c[this.Class]) {
+    return c[this.Class]
+  } else {
+    c[this.Class] = 
+      protoToObject.bind(this)(this, ignore[type])
+    return c[this.Class]
+  }
+}
+
 export let functions = Class =>
   class extends Class {
     static beforeFactoryOnce() {
@@ -13,10 +29,16 @@ export let functions = Class =>
     }
 
     functions() {
-      return protoToObject.bind(this)(this, this.Class.industry().ignore.instance)
+      return cacheFunctions.bind(this)({
+        ignore: this.Class.industry().ignore,
+        type: "instance"
+      })
     }
 
     static functions() {
-      return protoToObject.bind(this)(this, this.industry().ignore.Class)
+      return cacheFunctions.bind(this)({
+        ignore: this.industry().ignore,
+        type: "Class"
+      })
     }
   }
