@@ -5,14 +5,15 @@ let cache = {
   instance: {}
 }
 
-function cacheFunctions({ ignore, type }) {
+function cacheFunctions({ id, ignore, type }) {
   let c = cache[type]
-  if (c[this.Class]) {
-    return c[this.Class]
+  if (c[id]) {
+    console.log("cache hit", id)
+    return c[id]
   } else {
-    c[this.Class] = 
-      protoToObject.bind(this)(this, ignore[type])
-    return c[this.Class]
+    console.log("cache miss", id)
+    c[id] = protoToObject.bind(this)(this, ignore[type])
+    return c[id]
   }
 }
 
@@ -30,6 +31,7 @@ export let functions = Class =>
 
     functions() {
       return cacheFunctions.bind(this)({
+        id: this.Class.industry().id,
         ignore: this.Class.industry().ignore,
         type: "instance"
       })
@@ -37,6 +39,7 @@ export let functions = Class =>
 
     static functions() {
       return cacheFunctions.bind(this)({
+        id: this.industry().id,
         ignore: this.industry().ignore,
         type: "Class"
       })
